@@ -60,6 +60,44 @@ class ServerRemote {
 
         return promise;
     }
+
+    delete = async(url, token) => {
+        const requestUrl = this.host + url;
+
+        const headers = {
+            Authorization : token
+        };
+
+        const promise = await axios.delete(requestUrl, 
+            {
+                headers : headers
+            }    
+        ).then(function(res) {
+            return res.data;
+       }).catch(function(error) {
+            return error.response
+       });
+
+       return promise;
+    }
+
+    put = async(url, params, token) => {
+        const requestUrl = this.host + url;
+
+        const headers = {
+            Authorization : token
+        };
+
+        const promise = await axios.put(requestUrl, params, {
+            headers : headers
+        }).then(function(res) {
+            return res.data;
+        }).catch(function(error) {
+            return error.response;
+        });
+
+        return promise;
+    }
 }
 
 export default new ServerRemote();

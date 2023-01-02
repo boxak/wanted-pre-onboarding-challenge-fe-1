@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
 import ServerRemote from '../server/ServerRemote';
 import CreateTodoModal from './CreateTodoModal';
+import TodoList from './TodoList';
+import TodoDetail from './TodoDetail';
 
 const Todo = () => {
 
     const [todos, setTodos] = useState([]);
+    const [selectedTodo, setSelectedTodo] = useState({});
     const [openModal, setOpenModal] = useState(false);
+    
 
     useEffect(() => {
         refresh();
-    }, []);
+    }, [selectedTodo]);
 
     const getTodos = async() => {
 
@@ -19,17 +22,12 @@ const Todo = () => {
         let result = await ServerRemote.get("/todos", {}, token);
         let list = result.data;
 
-        //console.log("getTodo result : " + JSON.stringify(result));
-        console.log("list : " + JSON.stringify(list));
         return list;
     }
 
     const refresh = async() => {
-        // setTodos(getTodos());
         const list = await getTodos();
         setTodos(list);
-        console.log("todos : " + JSON.stringify(todos));
-        
     }
 
     const createTodo = async(title, content) => {
@@ -46,25 +44,46 @@ const Todo = () => {
         refresh();
     }
 
+    const deleteTodo = async(id) => {
+
+        const token = localStorage.getItem('token');
+        const result = await ServerRemote.delete('/todos/' + id, token);
+
+        refresh();
+    }
+
+    const updateTodo = async() => {
+        const token = localStorage.getItem('token');
+
+        const id = selectedTodo.id;
+        const title = selectedTodo.title;
+        const content = selectedTodo.content;
+
+        const params = {
+            title : title,
+            content : content
+        };
+
+        const result = await ServerRemote.put('/todos/' + id, params, token);
+
+        console.log("update result : " + JSON.stringify(result));
+
+        refresh();
+    }
 
     return (
         <div id="todo-div">
-            <div id="todo-list-div">
-                {   todos !== undefined && todos.length > 0 ?
-                    todos.map((todo, key) => (
-                        <div className="todo-div" key={key}>
-                            <span>
-                                {todo.title}
-                            </span>
-                        </div>
-                    )) : null
-                }
-                <div id="todo-btn">
-                    <button onClick={() => {setOpenModal(true);}}>
-                        To-do 추가하기
-                    </button>
-                </div>
+            <TodoList todos={todos} 
+                setSelectedTodo={setSelectedTodo} 
+                deleteTodo={deleteTodo} />
+            <div id="todo-btn">
+                <button onClick={() => {setOpenModal(true);}}>
+                    To-do 추가하기
+                </button>
             </div>
+            {   
+                <TodoDetail todo={selectedTodo} />
+            }
             {
                 openModal && <CreateTodoModal 
                                 setOpenModal={setOpenModal}
