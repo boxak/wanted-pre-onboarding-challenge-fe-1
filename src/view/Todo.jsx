@@ -52,12 +52,8 @@ const Todo = () => {
         refresh();
     }
 
-    const updateTodo = async() => {
+    const updateTodo = async(id, title, content) => {
         const token = localStorage.getItem('token');
-
-        const id = selectedTodo.id;
-        const title = selectedTodo.title;
-        const content = selectedTodo.content;
 
         const params = {
             title : title,
@@ -67,7 +63,7 @@ const Todo = () => {
         const result = await ServerRemote.put('/todos/' + id, params, token);
 
         console.log("update result : " + JSON.stringify(result));
-
+        setSelectedTodo(undefined);
         refresh();
     }
 
@@ -81,8 +77,12 @@ const Todo = () => {
                     To-do 추가하기
                 </button>
             </div>
-            {   
-                <TodoDetail todo={selectedTodo} />
+            {   selectedTodo !== undefined && selectedTodo !== null ?
+                <TodoDetail todo={selectedTodo} 
+                    updateTodo={updateTodo} 
+                    setTodo={setSelectedTodo} 
+                    setTodos={setTodos} 
+                    todos={todos} /> : null
             }
             {
                 openModal && <CreateTodoModal 

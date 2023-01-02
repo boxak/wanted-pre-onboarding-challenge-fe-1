@@ -2,7 +2,7 @@ import React from 'react';
 
 const TodoList = props => {
 
-    const { todos } = props;
+    const todos= props.todos;
 
     return (
         <div id="todo-list-div">
@@ -12,8 +12,12 @@ const TodoList = props => {
                         <span onClick={() => {props.setSelectedTodo(todo);}}>
                             {todo.title}
                         </span>
+                        -
+                        <span>
+                            {todo.content}
+                        </span>
                         <button onClick={() => {props.deleteTodo(todo.id)}}>삭제하기</button>
-                    </div>
+                    </div> 
                  )) : null
             }
         </div>
