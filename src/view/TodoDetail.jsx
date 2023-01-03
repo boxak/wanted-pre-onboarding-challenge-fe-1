@@ -70,11 +70,12 @@ const TodoDetail = props => {
                 name="content" 
                 id="todo-detail-content-input"/>
             </div>
-            <button onClick={()=>{setUpdateMode(true);}}>수정하기</button>
+            <button onClick={()=>{setUpdateMode(true);}} 
+                className="detail-btn">수정하기</button>
             {   isUpdateMode ? 
-                <button onClick={updateTodo}>제출하기</button> : null
+                <button onClick={updateTodo} className="detail-btn">제출하기</button> : null
             }
-            <button onClick={closeTodoDetail}>닫기</button>
+            <button onClick={closeTodoDetail} className="detail-btn">닫기</button>
         </div> : null
     );
 

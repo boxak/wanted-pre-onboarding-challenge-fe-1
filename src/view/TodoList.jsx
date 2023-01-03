@@ -13,7 +13,8 @@ const TodoList = props => {
                             className="todo-title">
                             {todo.title}
                         </div>
-                        <div className='todo-content'>
+                        <div onClick={() => {props.setSelectedTodo(todo);}} 
+                            className='todo-content'>
                             {todo.content}
                         </div>
                         <button onClick={() => {props.deleteTodo(todo.id)}}

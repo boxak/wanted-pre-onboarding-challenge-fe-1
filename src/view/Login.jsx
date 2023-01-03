@@ -26,25 +26,33 @@ const Login = props => {
     }
 
     return (
+        <div id="login-outer-div">
+        <h1 id="login-title">To do Login</h1>
         <div id='login-div'>
             <div className='login-input-div'>
-                <label>
-                    id : 
+                
+                <div className='login-label-div'>
+                    Id
+                </div>
+                <div className='login-inner-input-div'>
                     <input type='email' 
                         name='id-input' 
                         className='login-input'
                         ref={idRef} />
-                </label>
+                </div>
+                
             </div>
             <div className='login-input-div'>
-                <label>
-                    pw : 
+                <div className='login-label-div'>
+                    PW
+                </div>
+                <div className='login-inner-input-div'>
                     <input 
                         type='password' 
                         name='pw-input' 
                         className='login-input'
                         ref = {pwRef} />
-                </label>
+                </div>
             </div>
             <div id='login-btn-div'>
                 <button className='login-btn'
@@ -52,6 +60,7 @@ const Login = props => {
                 <button className='login-btn'
                     onClick={() => {navigate("/auth/signup");}}>회원가입</button>
             </div>
+        </div>
         </div>
     );
 };
