@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ServerRemote from '../server/ServerRemote';
 
-const Login = () => {
+const Login = props => {
 
     const idRef = useRef('');
     const pwRef = useRef('');
@@ -20,9 +20,9 @@ const Login = () => {
 
         const result = await ServerRemote.post('/users/login', params);
 
-        localStorage.setItem("token", result.token);
-
-        navigate("/todo");
+        props.setToken(result.token);
+        localStorage.setItem('email', id);
+        navigate("/");
     }
 
     return (

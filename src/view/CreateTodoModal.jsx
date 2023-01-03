@@ -24,8 +24,8 @@ const CreateTodoModal = props => {
     return domReady ? createPortal(
         <div id="create-todo-div">
             <div id="todo-input-div">
-                title : <input type="text" name="title" ref={titleRef}/>
-                content : <input type="text" name="content" ref={contentRef}/>
+                제목 <input type="text" name="title" ref={titleRef} id="todo-title-input"/>
+                내용 <textarea type="text" name="content" ref={contentRef} id="todo-content-input"/>
                 <div id="todo-btn-div">
                 <button onClick={createTodo}>To do 등록</button>
                 <button onClick={() => {props.setOpenModal(false);}}>

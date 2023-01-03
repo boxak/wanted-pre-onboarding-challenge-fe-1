@@ -9,14 +9,15 @@ const TodoList = props => {
             {   todos !== undefined && todos.length > 0 ?
                 todos.map((todo, key) => (
                     <div className="todo-div" key={key}>
-                        <span onClick={() => {props.setSelectedTodo(todo);}}>
+                        <div onClick={() => {props.setSelectedTodo(todo);}}
+                            className="todo-title">
                             {todo.title}
-                        </span>
-                        -
-                        <span>
+                        </div>
+                        <div className='todo-content'>
                             {todo.content}
-                        </span>
-                        <button onClick={() => {props.deleteTodo(todo.id)}}>삭제하기</button>
+                        </div>
+                        <button onClick={() => {props.deleteTodo(todo.id)}}
+                            className="todo-delete-btn">삭제하기</button>
                     </div> 
                  )) : null
             }

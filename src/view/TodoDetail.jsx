@@ -42,27 +42,39 @@ const TodoDetail = props => {
 
     const updateTodo = async() => {
         const id = todo.id;
+        closeTodoDetail();
+        await props.updateTodo(id, title, content);
+    }
+
+    const closeTodoDetail = () => {
         setTitle('');
         setContent('');
         setUpdateMode(false);
-        await props.updateTodo(id, title, content);
+        props.setTodo(undefined);
     }
 
     return (
         todo !== undefined && Object.keys(todo).length > 0 ? 
         <div className="todo-detail-div">
+            <div className='todo-detail-input-div'>
             <input ref={titleRef} type="text" disabled={!isUpdateMode}
                 value={NullChecker.fixNullString(title)}
                 onChange={handleChange}
-                name="title" />
-            <input ref={contentRef} type disabled={!isUpdateMode}
+                name="title" 
+                id="todo-detail-title-input"/>
+            </div>
+            <div className='todo-detail-input-div'>
+            <textarea ref={contentRef} type disabled={!isUpdateMode}
                 value={NullChecker.fixNullString(content)}
                 onChange={handleChange}
-                name="content" />
+                name="content" 
+                id="todo-detail-content-input"/>
+            </div>
             <button onClick={()=>{setUpdateMode(true);}}>수정하기</button>
             {   isUpdateMode ? 
                 <button onClick={updateTodo}>제출하기</button> : null
             }
+            <button onClick={closeTodoDetail}>닫기</button>
         </div> : null
     );
 
