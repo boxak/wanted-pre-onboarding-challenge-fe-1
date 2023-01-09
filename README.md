@@ -35,11 +35,11 @@
 
 - Auth 부분 구조
 
-![image-20230107104939291](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230107104939291.png)
+![image-20230107104939291](https://user-images.githubusercontent.com/38724041/211310397-6ea3e8f7-3ca4-4aa4-adde-475e1b3b941f.png)
 
 - Todo List 구조
 
-![image-20230107105230034](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230107105230034.png)
+![image-20230107105230034](https://user-images.githubusercontent.com/38724041/211310408-f066787d-566f-4501-addd-d17390b784e0.png)
 
 Todo 라는 상위 컴포넌트와 TodoList, TodoDetail, CreateTodoModal 의 하위 컴포넌트끼리 props로 데이터를 주고받도록 설계하였습니다.
 
