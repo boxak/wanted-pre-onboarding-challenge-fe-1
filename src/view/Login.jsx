@@ -20,47 +20,51 @@ const Login = props => {
 
         const result = await ServerRemote.post('/users/login', params);
 
-        props.setToken(result.token);
-        localStorage.setItem('email', id);
-        navigate("/");
+        if (result.token !== undefined && result.token.length > 0) {
+            props.setToken(result.token);
+            localStorage.setItem('email', id);
+            navigate("/");
+        } else {
+            alert("존재하지 않는 계정이거나 비밀번호가 잘못되었습니다.");
+        }
     }
 
     return (
         <div id="login-outer-div">
-        <h1 id="login-title">To do Login</h1>
-        <div id='login-div'>
-            <div className='login-input-div'>
-                
-                <div className='login-label-div'>
-                    Id
+            <h1 id="login-title">To do Login</h1>
+            <div id='login-div'>
+                <div className='login-input-div'>
+                    
+                    <div className='login-label-div'>
+                        Id
+                    </div>
+                    <div className='login-inner-input-div'>
+                        <input type='email' 
+                            name='id-input' 
+                            className='login-input'
+                            ref={idRef} />
+                    </div>
+                    
                 </div>
-                <div className='login-inner-input-div'>
-                    <input type='email' 
-                        name='id-input' 
-                        className='login-input'
-                        ref={idRef} />
+                <div className='login-input-div'>
+                    <div className='login-label-div'>
+                        PW
+                    </div>
+                    <div className='login-inner-input-div'>
+                        <input 
+                            type='password' 
+                            name='pw-input' 
+                            className='login-input'
+                            ref = {pwRef} />
+                    </div>
                 </div>
-                
+                <div id='login-btn-div'>
+                    <button className='login-btn'
+                        onClick={handleLogin}>로그인</button>
+                    <button className='login-btn'
+                        onClick={() => {navigate("/auth/signup");}}>회원가입</button>
+                </div>
             </div>
-            <div className='login-input-div'>
-                <div className='login-label-div'>
-                    PW
-                </div>
-                <div className='login-inner-input-div'>
-                    <input 
-                        type='password' 
-                        name='pw-input' 
-                        className='login-input'
-                        ref = {pwRef} />
-                </div>
-            </div>
-            <div id='login-btn-div'>
-                <button className='login-btn'
-                    onClick={handleLogin}>로그인</button>
-                <button className='login-btn'
-                    onClick={() => {navigate("/auth/signup");}}>회원가입</button>
-            </div>
-        </div>
         </div>
     );
 };

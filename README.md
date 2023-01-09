@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# 처음 만드는 To do List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+### 간략한 제 소개
 
-### `npm start`
+------------------------------------------
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 현재 해운, 항만 솔루션을 제공하는 IT 회사에 재직 중.
+- 본래 Java, Spring Framework를 주로 개발했으나 고객이 직접 사용하는 단말기 화면을 React로 제작하면서 프론트엔드 기술에 관심이 생겼습니다. 서버 API 개발보다는 눈에 보이는 UI를 개발하는 것이 더 적성에 맞다고 느껴 다시 신입의 자세로 프론트엔드 기술을 공부하고 있습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 제가 만든 To do List 소개
 
-### `npm run build`
+-------------------------------------------
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### 구성
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 회원가입, 로그인, 로그아웃
+- Todo List CRUD
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+##### 사용한 기술, 라이브러리
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React
+- axios : Rest API 요청으로 데이터 요청 및 수정에 사용
+- react-router-dom : Login, Log out, Sign Up 버튼 클릭시 페이지 이동하도록 하는데 사용
+- react-dom : createPortal을 통해 새로운 To-do 내용을 입력하는 모달 창을 구현하는 데 사용
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+##### 프로젝트 구조
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Auth 부분 구조
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image-20230107104939291](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230107104939291.png)
 
-### Code Splitting
+- Todo List 구조
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![image-20230107105230034](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230107105230034.png)
 
-### Analyzing the Bundle Size
+Todo 라는 상위 컴포넌트와 TodoList, TodoDetail, CreateTodoModal 의 하위 컴포넌트끼리 props로 데이터를 주고받도록 설계하였습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+##### 페이지 실행
 
-### Advanced Configuration
+```
+> npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+> npm start # http://localhost:3000
+```
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+----------------------------------------------
+
+#### 프로젝트하며 어려웠던 점
+
+- Modal 창을 구현하는 것이 어려웠습니다. 다행히 인터넷 검색을 통해 createPortal 기능을 사용하여 모달 창을 관리하도록 구현하는 방법이 있어 그것을 참고하였습니다.
+- 기존에는 클래스형 컴포넌트로 컴포넌트 생성 주기를 관리하는 방법만 알고 있었기에 함수형 컴포넌트를 사용하는 것이 익숙하지 않아 어려웠습니다. 그것 외에도 클래스형 컴포넌트와 문법같은 부분이 다른 것들이 많아 어렵게 느껴졌습니다.

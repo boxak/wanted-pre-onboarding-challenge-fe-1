@@ -50,38 +50,50 @@ const SignUp = () => {
     }
 
     return (
-        <div id='signup-div'>
-            <div className='signup-input-div'>
-                <label>
-                    email : 
-                    <input name='signup-email-input'
-                        type='email'
-                        className='signup-input' 
-                        ref={emailRef} 
-                        onChange={validateSignUp}
-                        />
-                </label>
-            </div>
-            <div className='signup-input-div'>
-                <label>
-                    password : 
-                    <input name='signup-pw-input'
-                        type='password'
-                        className='signup-input'
-                        ref={pwRef} 
-                        onChange={validateSignUp}
-                        />
-                </label>
-            </div>
-            <button onClick={doSignUp} disabled={disableSubmit}>제출하기</button>
-            <button onClick={() => {navigate("/")}}>로그인으로 가기</button>
-            <div id="signup-rule-div">
-                <span>
-                    이메일은 @,.이 포함되어야 합니다.
-                    <br />
-                    패스워드는 8자 이상으로 해주세요.
-                </span>
-            </div>
+        <div id="signup-outer-div">
+            <h1 id="signup-title">To do sign up</h1>
+            <div id='signup-div'>
+                <div className='signup-input-div'>
+                    <div className='signup-label-div'>
+                        Email
+                    </div>
+                    <div className='signup-input-inner-div'>
+                        <input name='signup-email-input'
+                            type='email'
+                            className='signup-input' 
+                            ref={emailRef} 
+                            onChange={validateSignUp}
+                            />
+                    </div>
+                </div>
+                <div className='signup-input-div'>
+                    <div className='signup-label-div'>
+                        Password
+                    </div>
+                    <div className='signup-input-inner-div'>
+                        <input name='signup-pw-input'
+                            type='password'
+                            className='signup-input' 
+                            ref={pwRef} 
+                            onChange={validateSignUp}
+                            />
+                    </div>
+                </div>
+                <div id="signup-btn-div">
+                    <button onClick={doSignUp} disabled={disableSubmit}
+                        className='signup-btn'
+                        style={{cursor: disableSubmit ? 'default' : 'pointer'}}>제출하기</button>
+                    <button onClick={() => {navigate("/")}}
+                        className='signup-btn'>로그인으로 가기</button>
+                </div>
+                <div id="signup-rule-div">
+                    <span>
+                        이메일은 @,.이 포함되어야 합니다.
+                        <br />
+                        패스워드는 8자 이상으로 해주세요.
+                    </span>
+                </div>
+            </div>  
         </div>
     );
 };
